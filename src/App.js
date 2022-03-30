@@ -14,10 +14,30 @@ import {
 
 const App = () => {
   const [pokemons, setPokemons] = useState([])
-  const [selectedPokeInfo, setSelectedPokeInfo] = useState([])
   const limit = 18
   const offset = 1
   const selectedPoke = 1
+
+  const [selectedPokeInfo, setSelectedPokeInfo] = useState([])
+
+  useEffect(() => {
+    const pokeInfoGet = pokeApiPokeInfo.get(`1`)
+    const pokeSpecsGet = pokeApiPokeSpecs.get(`1`)
+
+    const pokeInfoTest = async () => {
+      try {
+        const [{ data: pokeInfo }, { data: pokeSpecs }] = await Promise.all([
+          pokeInfoGet,
+          pokeSpecsGet
+        ])
+        setSelectedPokeInfo({ ...pokeInfo, ...pokeSpecs })
+      } catch (err) {
+        console.log(`pokeInfoTest error: ${err.message}`)
+      }
+    }
+
+    pokeInfoTest()
+  }, [])
 
   const pokeSearch = async () => {
     const { data } = await pokeApiPokeList.get(`/pokemon`, {
@@ -29,20 +49,6 @@ const App = () => {
     console.log(data.results)
     setPokemons(data.results)
   }
-
-  useEffect(() => {
-    const pokeInfoGet = pokeApiPokeInfo.get(`${selectedPoke}`)
-    const pokeSpecsGet = pokeApiPokeSpecs.get(`${selectedPoke}`)
-
-    const pokeInfoTest = async () => {
-      const [{ data: pokeInfo }, { data: pokeSpecs }] = await Promise.all([
-        pokeInfoGet,
-        pokeSpecsGet
-      ])
-      setSelectedPokeInfo({ ...pokeInfo, ...pokeSpecs })
-    }
-    pokeInfoTest()
-  }, [])
 
   useEffect(() => {
     pokeSearch()
