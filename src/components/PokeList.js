@@ -21,8 +21,13 @@ const PokeList = () => {
         offset
       }
     })
-    console.log(data.results)
-    setPokemons(data.results)
+
+    const pokesWithId = data.results.map((poke) => {
+      return { ...poke, id: Number(poke.url.slice(34, -1)) }
+    })
+
+    console.log(pokesWithId)
+    setPokemons(pokesWithId)
   }
 
   useEffect(() => {
@@ -36,9 +41,9 @@ const PokeList = () => {
           <CardActionArea>
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
-                {pokemon.name}
+                {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
               </Typography>
-              <Typography variant="body2">{pokemon.name}</Typography>
+              <Typography variant="body2">ID: {pokemon.id}</Typography>
             </CardContent>
           </CardActionArea>
         </Card>
