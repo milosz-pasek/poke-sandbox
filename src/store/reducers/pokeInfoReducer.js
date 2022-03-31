@@ -1,4 +1,4 @@
-import { FETCH_POKES } from "../actions/types"
+import { FETCH_POKES } from "../actionTypes"
 
 const INITIAL_STATE = {
   selectedPokeId: null,
