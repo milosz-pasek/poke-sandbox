@@ -1,4 +1,4 @@
-import { FETCH_POKES } from "./types"
+import { FETCH_POKES } from "../actionTypes"
 
 export const fetchPokes = () => {
   return {
