@@ -43,7 +43,9 @@ const PokeList = () => {
               <Typography gutterBottom variant="h5" component="div">
                 {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
               </Typography>
-              <Typography variant="body2">ID: {pokemon.id}</Typography>
+              <Typography variant="body2">
+                ID: {pokemon.id.toString().padStart(3, "0")}
+              </Typography>
             </CardContent>
           </CardActionArea>
         </Card>
