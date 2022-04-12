@@ -1,6 +1,15 @@
 import React from "react"
 import ReactDOM from "react-dom"
-
+import { QueryClientProvider, QueryClient } from "react-query"
+import { ReactQueryDevtools } from "react-query/devtools"
 import App from "./App"
 
-ReactDOM.render(<App />, document.querySelector("#root"))
+const queryClient = new QueryClient()
+
+ReactDOM.render(
+  <QueryClientProvider client={queryClient}>
+    <App />
+    <ReactQueryDevtools />
+  </QueryClientProvider>,
+  document.querySelector("#root")
+)
