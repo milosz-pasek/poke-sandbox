@@ -1,16 +1,19 @@
-import React from "react"
-import { Container, Pagination } from "@mui/material"
-
+import React, { useState, useEffect } from "react"
+import { Pagination } from "@mui/material"
 import { usePokeListQuery } from "../hooks/usePokeListQuery"
 import { PokeCard } from "../components"
 
 export const PokeList = () => {
-  const offset = 0
+  const [offset, setOffset] = useState(0)
   const { data, error, isError, isLoading } = usePokeListQuery(offset)
+
+  const handleChange = (e, value) => {
+    setOffset(0 + (value - 1) * 18)
+  }
 
   const renderPokemonList = () => {
     if (isLoading) {
-      return <div>Loading...</div>
+      return [...Array(18)].map((e, i) => <PokeCard key={i} isLoading={true} />)
     }
 
     if (isError) {
@@ -26,5 +29,11 @@ export const PokeList = () => {
     })
   }
 
-  return <>{renderPokemonList()}</>
+  return (
+    <>
+      {renderPokemonList()}
+      <div>{console.log(data)}</div>
+      <Pagination count={10} onChange={handleChange} />
+    </>
+  )
 }

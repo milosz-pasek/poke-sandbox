@@ -16,7 +16,6 @@ const MainPage = () => {
       maxWidth="lg"
     >
       <PokeList />
-      <Pagination count={10} />
     </Container>
   )
 }
