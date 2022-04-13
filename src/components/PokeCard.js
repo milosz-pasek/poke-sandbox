@@ -12,12 +12,13 @@ export const PokeCard = ({ pokeData }) => {
     <Card key={pokeData.name} sx={{ minWidth: 300, maxwidth: 345, m: 1 }}>
       <CardActionArea>
         <CardMedia
+          sx={{ objectFit: "scale-down", imageRendering: "pixelated" }}
           component="img"
           height="145"
           image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeData.id}.png`}
           alt={pokeData.name}
         />
-        <CardContent>
+        <CardContent sx={{ bgcolor: "#F6F6F6" }}>
           <Typography gutterBottom variant="h5" component="div">
             {pokeData.name.charAt(0).toUpperCase() + pokeData.name.slice(1)}
           </Typography>

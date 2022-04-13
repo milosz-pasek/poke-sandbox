@@ -1,10 +1,10 @@
 import React from "react"
-import { Container } from "@mui/material"
+import { Container, Pagination } from "@mui/material"
 
 import { usePokeListQuery } from "../hooks/usePokeListQuery"
 import { PokeCard } from "../components"
 
-const PokeList = () => {
+export const PokeList = () => {
   const offset = 0
   const { data, error, isError, isLoading } = usePokeListQuery(offset)
 
@@ -26,21 +26,5 @@ const PokeList = () => {
     })
   }
 
-  return (
-    <Container
-      sx={{
-        display: "flex",
-        flexDirection: "row",
-        flexWrap: "wrap",
-        justifyContent: "center",
-        m: "auto",
-        p: 1
-      }}
-      maxWidth="lg"
-    >
-      {renderPokemonList()}
-    </Container>
-  )
+  return <>{renderPokemonList()}</>
 }
-
-export default PokeList

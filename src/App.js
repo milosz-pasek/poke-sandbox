@@ -1,11 +1,11 @@
 import React from "react"
-import PokeList from "./components/PokeList"
+import MainPage from "./pages/MainPage"
 import { Footer } from "./components"
 
 const App = () => {
   return (
     <div>
-      <PokeList />
+      <MainPage />
       <Footer />
     </div>
   )
