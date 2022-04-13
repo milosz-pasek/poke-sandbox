@@ -1,34 +1,12 @@
 import React from "react"
-import {
-  Card,
-  CardActionArea,
-  CardContent,
-  Typography,
-  Container
-} from "@mui/material"
-import { useQuery } from "react-query"
+import { Container } from "@mui/material"
 
-import { pokeApiPokeList } from "../apis/pokeapi"
+import { usePokeListQuery } from "../hooks/usePokeListQuery"
+import { PokeCard } from "../components"
 
 const PokeList = () => {
-  const limit = 18
   const offset = 0
-
-  const pokeSearch = async () => {
-    const { data } = await pokeApiPokeList.get(`/pokemon`, {
-      params: {
-        limit,
-        offset
-      }
-    })
-
-    const pokesWithId = data.results.map((poke) => {
-      return { ...poke, id: Number(poke.url.slice(34, -1)) }
-    })
-    return pokesWithId
-  }
-
-  const { data, error, isError, isLoading } = useQuery("pokeList", pokeSearch)
+  const { data, error, isError, isLoading } = usePokeListQuery(offset)
 
   const renderPokemonList = () => {
     if (isLoading) {
@@ -39,21 +17,12 @@ const PokeList = () => {
       return <div>Error: {error.message}</div>
     }
 
+    if (!data.length) {
+      return <div>Empty List returned</div>
+    }
+
     return data.map((pokemon) => {
-      return (
-        <Card key={pokemon.name} sx={{ minWidth: 300, maxwidth: 345, m: 1 }}>
-          <CardActionArea>
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                ID: {pokemon.id.toString().padStart(3, "0")}
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-        </Card>
-      )
+      return <PokeCard key={pokemon.id} pokeData={pokemon} />
     })
   }
 
