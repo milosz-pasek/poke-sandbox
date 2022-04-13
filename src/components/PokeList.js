@@ -13,7 +13,7 @@ export const PokeList = () => {
 
   const renderPokemonList = () => {
     if (isLoading) {
-      return <div>Loading...</div>
+      return [...Array(18)].map((e, i) => <PokeCard key={i} isLoading={true} />)
     }
 
     if (isError) {
@@ -32,7 +32,7 @@ export const PokeList = () => {
   return (
     <>
       {renderPokemonList()}
-      <div></div>
+      <div>{console.log(data)}</div>
       <Pagination count={10} onChange={handleChange} />
     </>
   )
