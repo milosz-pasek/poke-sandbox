@@ -17,7 +17,10 @@ export const usePokeListQuery = (offset) => {
     })
     return pokesWithId
   }
-  const { data, error, isError, isLoading } = useQuery(pokeList, pokeSearch)
+  const { data, error, isError, isLoading } = useQuery(
+    pokeList + offset,
+    pokeSearch
+  )
 
   return { data, error, isError, isLoading }
 }
