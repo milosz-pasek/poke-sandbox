@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react"
-import { Pagination } from "@mui/material"
+import React, { useState } from "react"
+import { Container, TextField, Pagination } from "@mui/material"
 import { usePokeListQuery } from "../hooks/usePokeListQuery"
 import { PokeCard } from "../components"
 
@@ -31,8 +31,26 @@ export const PokeList = () => {
 
   return (
     <>
-      {renderPokemonList()}
-      <div>{console.log(data)}</div>
+      <TextField
+        sx={{ width: "100%" }}
+        id="outlined-basic"
+        label="Search test"
+        variant="outlined"
+      />
+      <Container
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          m: "auto",
+          p: 1
+        }}
+        maxWidth="lg"
+      >
+        {renderPokemonList()}
+      </Container>
+      <div></div>
       <Pagination count={10} onChange={handleChange} />
     </>
   )

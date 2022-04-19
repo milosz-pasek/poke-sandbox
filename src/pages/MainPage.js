@@ -1,5 +1,5 @@
 import React from "react"
-import { Container, Pagination } from "@mui/material"
+import { Container, TextField } from "@mui/material"
 import { PokeList } from "../components"
 
 const MainPage = () => {
@@ -7,13 +7,11 @@ const MainPage = () => {
     <Container
       sx={{
         display: "flex",
-        flexDirection: "row",
-        flexWrap: "wrap",
-        justifyContent: "center",
+        flexDirection: "column",
+        alignItems: "center",
         m: "auto",
         p: 1
       }}
-      maxWidth="lg"
     >
       <PokeList />
     </Container>
