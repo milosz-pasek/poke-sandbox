@@ -3,11 +3,11 @@ import { useQuery } from "react-query"
 
 const pokeList = "pokeList"
 
-export const usePokeListQuery = (offset) => {
+export const usePokeListQuery = (offset, limit) => {
   const pokeSearch = async () => {
     const { data } = await pokeApiPokeList.get(`/pokemon`, {
       params: {
-        limit: 18,
+        limit,
         offset
       }
     })
@@ -18,7 +18,7 @@ export const usePokeListQuery = (offset) => {
     return pokesWithId
   }
   const { data, error, isError, isLoading } = useQuery(
-    pokeList + offset,
+    `${pokeList}/${offset + 1}`,
     pokeSearch
   )
 

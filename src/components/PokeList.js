@@ -1,19 +1,24 @@
 import React, { useState } from "react"
-import { Container, TextField, Pagination } from "@mui/material"
+import { Container, Pagination } from "@mui/material"
 import { usePokeListQuery } from "../hooks/usePokeListQuery"
 import { PokeCard } from "../components"
 
 export const PokeList = () => {
   const [offset, setOffset] = useState(0)
-  const { data, error, isError, isLoading } = usePokeListQuery(offset)
+  const [limit, setLimit] = useState(18)
+  const [page, setPage] = useState(1)
+  const { data, error, isError, isLoading } = usePokeListQuery(offset, limit)
 
   const handleChange = (e, value) => {
     setOffset(0 + (value - 1) * 18)
+    setPage(value)
   }
 
   const renderPokemonList = () => {
     if (isLoading) {
-      return [...Array(18)].map((e, i) => <PokeCard key={i} isLoading={true} />)
+      return [...Array(limit)].map((e, i) => (
+        <PokeCard key={i} isLoading={true} />
+      ))
     }
 
     if (isError) {
@@ -31,12 +36,6 @@ export const PokeList = () => {
 
   return (
     <>
-      <TextField
-        sx={{ width: "100%" }}
-        id="outlined-basic"
-        label="Search test"
-        variant="outlined"
-      />
       <Container
         sx={{
           display: "flex",
@@ -51,7 +50,7 @@ export const PokeList = () => {
         {renderPokemonList()}
       </Container>
       <div></div>
-      <Pagination count={10} onChange={handleChange} />
+      <Pagination count={50} page={page} onChange={handleChange} />
     </>
   )
 }
