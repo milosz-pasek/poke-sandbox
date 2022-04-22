@@ -1,7 +1,7 @@
 import React from "react"
 import MainPage from "./pages/MainPage"
 import About from "./pages/About"
-import { Footer, NavBar } from "./components"
+import { Footer, NavBar, PokeInfo } from "./components"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
 const App = () => {
@@ -10,8 +10,9 @@ const App = () => {
       <Router>
         <NavBar />
         <Routes>
-          <Route path="/pokelist/:id" element={<MainPage />} />
+          <Route path="/pokelist/:page" element={<MainPage />} />
           <Route path="/about" element={<About />} />
+          <Route path="/pokemon/:id" element={<PokeInfo />} />
         </Routes>
       </Router>
       <Footer />

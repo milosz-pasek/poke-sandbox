@@ -52,7 +52,7 @@ export const PokeList = () => {
       >
         {renderPokemonList()}
       </Container>
-      <div>{console.log(history)}</div>
+      <div></div>
       <Pagination count={50} page={page} onChange={handleChange} />
     </>
   )
