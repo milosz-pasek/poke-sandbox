@@ -2,17 +2,19 @@ import React, { useState } from "react"
 import { Container, Pagination } from "@mui/material"
 import { usePokeListQuery } from "../hooks/usePokeListQuery"
 import { PokeCard } from "../components"
+import { useParams, useNavigate } from "react-router-dom"
 
 export const PokeList = () => {
   const [offset, setOffset] = useState(0)
   const [limit, setLimit] = useState(18)
-  const [page, setPage] = useState(1)
 
   const { data, error, isError, isLoading } = usePokeListQuery(offset, limit)
+  const { page } = useParams()
+  const navigate = useNavigate()
 
   const handleChange = (e, value) => {
     setOffset(0 + (value - 1) * 18)
-    setPage(value)
+    navigate(`/pokelist/${value}`)
   }
 
   const renderPokemonList = () => {
@@ -51,7 +53,7 @@ export const PokeList = () => {
         {renderPokemonList()}
       </Container>
       <div></div>
-      <Pagination count={50} page={page} onChange={handleChange} />
+      <Pagination count={50} page={parseInt(page)} onChange={handleChange} />
     </>
   )
 }
