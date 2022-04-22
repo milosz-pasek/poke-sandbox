@@ -5,11 +5,12 @@ import { PokeCard } from "../components"
 import { useParams, useNavigate } from "react-router-dom"
 
 export const PokeList = () => {
-  const [offset, setOffset] = useState(0)
   const [limit, setLimit] = useState(18)
 
-  const { data, error, isError, isLoading } = usePokeListQuery(offset, limit)
   const { page } = useParams()
+  const [offset, setOffset] = useState(0 + (page - 1) * 18)
+  const { data, error, isError, isLoading } = usePokeListQuery(offset, limit)
+
   const navigate = useNavigate()
 
   const handleChange = (e, value) => {
