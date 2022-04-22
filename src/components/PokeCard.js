@@ -8,7 +8,11 @@ import {
 } from "@mui/material"
 import placeholder from "../assets/placeholder.png"
 
+import { useNavigate } from "react-router-dom"
+
 export const PokeCard = ({ pokeData, isLoading }) => {
+  const navigate = useNavigate()
+
   return isLoading ? (
     <Card sx={{ minWidth: 300, maxwidth: 345, m: 1 }}>
       <CardActionArea>
@@ -30,7 +34,10 @@ export const PokeCard = ({ pokeData, isLoading }) => {
       </CardActionArea>
     </Card>
   ) : (
-    <Card sx={{ minWidth: 300, maxwidth: 345, m: 1 }}>
+    <Card
+      onClick={() => navigate(`/pokemon/${pokeData.id}`)}
+      sx={{ minWidth: 300, maxwidth: 345, m: 1 }}
+    >
       <CardActionArea>
         <CardMedia
           sx={{ objectFit: "scale-down", imageRendering: "auto" }}
