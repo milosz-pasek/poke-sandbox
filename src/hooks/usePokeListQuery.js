@@ -17,10 +17,6 @@ export const usePokeListQuery = (offset, limit) => {
     })
     return pokesWithId
   }
-  const { data, error, isError, isLoading } = useQuery(
-    `${pokeList}/${offset + 1}`,
-    pokeSearch
-  )
 
-  return { data, error, isError, isLoading }
+  return useQuery(`${pokeList}/${offset + 1}`, pokeSearch)
 }
