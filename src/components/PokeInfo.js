@@ -1,4 +1,5 @@
 import React from "react"
+import { Container, Paper, Typography, Card, Box } from "@mui/material"
 import { useParams } from "react-router-dom"
 import { usePokeDetailsQuery } from "../hooks/usePokeDetailsQuery"
 
@@ -17,11 +18,11 @@ export const PokeInfo = () => {
     }
 
     return (
-      <>
+      <Box>
         <div>I'm a Poke info component</div> <h1>{data.name}</h1>
         <p>{data.id}</p>
-      </>
+      </Box>
     )
   }
-  return <>{renderPokemonInfo()}</>
+  return <Container>{renderPokemonInfo()}</Container>
 }

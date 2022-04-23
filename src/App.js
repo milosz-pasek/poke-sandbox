@@ -8,10 +8,11 @@ import {
   Route,
   Navigate
 } from "react-router-dom"
+import CssBaseline from "@mui/material/CssBaseline"
 
 const App = () => {
   return (
-    <div>
+    <CssBaseline>
       <Router>
         <NavBar />
         <Routes>
@@ -22,7 +23,7 @@ const App = () => {
         </Routes>
       </Router>
       <Footer />
-    </div>
+    </CssBaseline>
   )
 }
 
