@@ -10,11 +10,8 @@ import Container from "@mui/material/Container"
 import Button from "@mui/material/Button"
 import MenuItem from "@mui/material/MenuItem"
 import { useNavigate } from "react-router-dom"
+import { pages } from "../configs/navigationConfig"
 
-const pages = [
-  { name: "PokeList", link: "" },
-  { name: "About", link: "about" }
-]
 export const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null)
 
@@ -70,12 +67,9 @@ export const NavBar = () => {
                 display: { xs: "block", md: "none" }
               }}
             >
-              {pages.map((page) => (
-                <MenuItem
-                  key={page.name}
-                  onClick={() => navigate(`/${page.link}`)}
-                >
-                  <Typography textAlign="center">{page.name}</Typography>
+              {pages.map(({ name, path }) => (
+                <MenuItem key={name} onClick={() => navigate(path)}>
+                  <Typography textAlign="center">{name}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -89,13 +83,13 @@ export const NavBar = () => {
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
+            {pages.map(({ name, path }) => (
               <Button
-                key={page.name}
-                onClick={() => navigate(`/${page.link}`)}
+                key={name}
+                onClick={() => navigate(path)}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                {page.name}
+                {name}
               </Button>
             ))}
           </Box>

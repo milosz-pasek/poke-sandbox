@@ -1,10 +1,11 @@
 import React from "react"
 import { useParams } from "react-router-dom"
-import { usePokeInfoQuery } from "../hooks/usePokeInfoQuery"
+import { usePokeDetailsQuery } from "../hooks/usePokeDetailsQuery"
 
 export const PokeInfo = () => {
+  // TODO
   const { id } = useParams()
-  const { data, error, isError, isLoading } = usePokeInfoQuery(id)
+  const { data, error, isError, isLoading } = usePokeDetailsQuery(id)
 
   const renderPokemonInfo = () => {
     if (isLoading) {
@@ -22,6 +23,5 @@ export const PokeInfo = () => {
       </>
     )
   }
-
   return <>{renderPokemonInfo()}</>
 }
