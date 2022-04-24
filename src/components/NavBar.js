@@ -12,8 +12,6 @@ import MenuItem from "@mui/material/MenuItem"
 import { useNavigate } from "react-router-dom"
 import { pages } from "../configs/navigationConfig"
 import TextField from "@mui/material/TextField"
-import SearchIcon from "@mui/icons-material/Search"
-import { InputAdornment } from "@mui/material"
 
 export const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null)
