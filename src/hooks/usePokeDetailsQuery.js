@@ -1,13 +1,16 @@
-import { pokeApiPokeInfo } from "../apis/pokeapi"
+import { pokeApiPokeInfo, pokeApiPokeSpecs } from "../apis/pokeapi"
 import { useQuery } from "react-query"
 
 const pokeInfo = "pokeInfo"
 
 export const usePokeDetailsQuery = (pokeId) => {
   const getPokeInfo = async () => {
-    const { data } = await pokeApiPokeInfo.get(`/${pokeId}`)
+    const [{ data: pokeDetails }, { data: pokeSpecs }] = await Promise.all([
+      pokeApiPokeInfo.get(`/${pokeId}`),
+      pokeApiPokeSpecs.get(`/${pokeId}`)
+    ])
 
-    return data
+    return { ...pokeDetails, ...pokeSpecs }
   }
 
   return useQuery(`${pokeInfo}/${pokeId}`, getPokeInfo)
