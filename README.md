@@ -9,6 +9,7 @@ The website is still under construction and I am constantly working on improving
 
 #### Bugs and tasks to cover:
 - deselect search bar after submit,
+- error handling,
 - PokeInfo mobile view,
 - NavBar mobile view,
 - about section,
