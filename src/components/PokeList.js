@@ -3,6 +3,7 @@ import { Container, Pagination } from "@mui/material"
 import { usePokeListQuery } from "../hooks/usePokeListQuery"
 import { PokeCard } from "../components"
 import { useParams, useNavigate } from "react-router-dom"
+import { useAutoAnimate } from "@formkit/auto-animate/react"
 
 export const PokeList = () => {
   const [limit, setLimit] = useState(18)
@@ -12,6 +13,7 @@ export const PokeList = () => {
   const { data, error, isError, isLoading } = usePokeListQuery(offset, limit)
 
   const navigate = useNavigate()
+  const [animatedList] = useAutoAnimate()
 
   const handleChange = (e, value) => {
     setOffset(0 + (value - 1) * 18)
@@ -34,7 +36,7 @@ export const PokeList = () => {
     }
 
     return data.map((pokemon) => {
-      return <PokeCard key={pokemon.id} pokeData={pokemon} />
+      return <PokeCard ref={animatedList} key={pokemon.id} pokeData={pokemon} />
     })
   }
 

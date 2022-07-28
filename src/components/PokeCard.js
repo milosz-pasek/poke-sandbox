@@ -9,9 +9,12 @@ import {
 import placeholder from "../assets/placeholder.png"
 
 import { useNavigate } from "react-router-dom"
+import { useAutoAnimate } from "@formkit/auto-animate/react"
 
 export const PokeCard = ({ pokeData, isLoading }) => {
   const navigate = useNavigate()
+
+  const [animatedCard] = useAutoAnimate()
 
   return isLoading ? (
     <Card sx={{ minWidth: 300, maxwidth: 345, m: 1 }}>

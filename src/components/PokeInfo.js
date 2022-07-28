@@ -1,5 +1,5 @@
 import React from "react"
-import { Container, Paper, Typography, Card, Box, Grid } from "@mui/material"
+import { Container, Paper, Typography, Box, Grid } from "@mui/material"
 import { useParams } from "react-router-dom"
 import { usePokeDetailsQuery } from "../hooks/usePokeDetailsQuery"
 
